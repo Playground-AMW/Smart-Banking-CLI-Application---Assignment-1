@@ -8,7 +8,10 @@ public class BankingApp {
         final String CLEAR = "\033[H\033[2J";
         final String BLUE_BOLD_START = "\033[34;1m";
         final String RED_BOLD_START = "\033[31;1m";
+        final String GREEN_BOLD_START = "\033[32;1m";
         final String RESET = "\033[30;0m";
+
+        final String SUCCESS_MSG = String.format("%s%s%s\n", GREEN_BOLD_START, "%s", RESET);
 
         final String MAIN_MENU = "\u1F4B0 Welcome to Smart Banking App";
         final String OPEN_NEW_ACCOUNT = "Add New Customer";
@@ -25,7 +28,7 @@ public class BankingApp {
         int[] custID = new int[0];
         int[] bankBalance = new int[0];
 
-        Loop: do {
+        do {
             final String APP_TITLE = String.format("%s%s%s", BLUE_BOLD_START, screen, RESET);
             System.out.println(CLEAR);
             System.out.println("\t" + APP_TITLE + "\n");
@@ -134,7 +137,7 @@ public class BankingApp {
                     bankBalance = newCustBankAmt;
 
                     System.out.println();
-                    System.out.print(" " + name + " added sucessfully.\n Do you want to add new student (Y/n)? ");
+                    System.out.printf(SUCCESS_MSG, String.format("SDB-%05d: %s added successfuly.\n Do you want to add more (Y/n)? ", id, name));
                     if (scanner.nextLine().strip().toUpperCase().equals("Y"))
                         continue;
                     screen = MAIN_MENU;
